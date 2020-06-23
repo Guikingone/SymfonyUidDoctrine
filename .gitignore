@@ -1,0 +1,8 @@
+# PHP-CS-FIXER
+.php_cs.cache
+
+# PHPUnit
+.phpunit.result.cache
+
+# Infection
+infection.log
