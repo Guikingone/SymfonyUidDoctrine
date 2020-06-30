@@ -42,6 +42,10 @@ final class UuidType extends GuidType
             return null;
         }
 
+        if ($value instanceof Uuid) {
+            return $value;
+        }
+
         if (!Uuid::isValid($value)) {
             throw ConversionException::conversionFailed($value, self::NAME);
         }

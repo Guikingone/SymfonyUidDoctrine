@@ -8,7 +8,6 @@ use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\GuidType;
 use Symfony\Component\Uid\Ulid;
-use Throwable;
 
 /**
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
@@ -40,6 +39,10 @@ final class UlidType extends GuidType
     {
         if (null === $value || '' === $value) {
             return null;
+        }
+
+        if ($value instanceof Ulid) {
+            return $value;
         }
 
         if (!Ulid::isValid($value)) {
