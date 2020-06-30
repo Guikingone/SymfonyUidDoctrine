@@ -97,4 +97,14 @@ final class UuidTypeTest extends TestCase
         $value = Type::getType('uuid')->convertToPHPValue($uuid->toRfc4122(), $platform);
         static::assertInstanceOf(Uuid::class, $value);
     }
+
+    public function testTypeCanBeConvertedToPHPValueWhenUsingAnUuidObject(): void
+    {
+        $platform = $this->createMock(AbstractPlatform::class);
+
+        $uuid = Uuid::v4();
+
+        $value = Type::getType('uuid')->convertToPHPValue($uuid, $platform);
+        static::assertInstanceOf(Uuid::class, $value);
+    }
 }

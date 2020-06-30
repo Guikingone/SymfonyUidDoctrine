@@ -102,4 +102,14 @@ final class UlidTypeTest extends TestCase
         $value = Type::getType('ulid')->convertToPHPValue(strtr($entryValue, ['-' => '0']), $platform);
         static::assertInstanceOf(Ulid::class, $value);
     }
+
+    public function testTypeCanBeConvertedToPHPValueWhenUsingAnUlidObject(): void
+    {
+        $platform = $this->createMock(AbstractPlatform::class);
+
+        $ulid = new Ulid();
+
+        $value = Type::getType('ulid')->convertToPHPValue($ulid, $platform);
+        static::assertInstanceOf(Ulid::class, $value);
+    }
 }
